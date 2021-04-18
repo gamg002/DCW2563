@@ -1,21 +1,28 @@
-import Head from 'next/head' 
-import Layout from '../components/layout' 
+import Head from 'next/head'
+import Layout from '../components/layout'
 import Navbar from '../components/navbar'
 import styles from '../styles/Home.module.css'
 
 export default function Home({ token }) {
- 
+
   return (
     <Layout>
-    <Head>
+      <Head>
         <title>First Page</title>
-    </Head>
-    <div className={styles.container}>
+      </Head>
+      <div className={styles.container}>
         <Navbar />
-        <h1>Home page</h1>
-        No login required!
-    </div>
-</Layout>
+        <div>
+
+          <h2>Produce</h2>
+          <ul className={styles.list} >
+            { }
+          </ul>
+
+
+        </div>
+      </div>
+    </Layout>
   )
 }
 

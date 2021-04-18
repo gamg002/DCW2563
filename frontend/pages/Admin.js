@@ -29,7 +29,7 @@ const Profile1 = ({ token }) => {
         }
 
     }
- 
+
     return (
         <Layout>
             <Head>
@@ -37,13 +37,20 @@ const Profile1 = ({ token }) => {
             </Head>
             <div className={styles.container}>
                 <Navbar />
-                <h1>Token Check</h1>
                 <div>
-                    <b>Token:</b> {token.substring(0, 15)}... <br /><br />
-                    Foo
-                    <br/>
-                    FOOOOOOOOOOOO
-                
+                    <h2>
+                        Add Stu
+                    </h2>
+                      name: <input type="text" onChange={(e) => setFname(e.target.value)}></input>
+                      cost: <input type="text" onChange={(e) => setSurname(e.target.value)}></input>
+                    <button onClick={() => addStu(fname, surname, major, gpa)}>Add</button>
+
+                    <div><h2>Produce</h2>
+                        <ul className={styles.list} >
+                            { }
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </Layout>

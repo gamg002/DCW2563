@@ -24,7 +24,7 @@ export default function Login({ token }) {
         }
         catch (e) {
             console.log('error: ', JSON.stringify(e.response))
-            setStatus(JSON.stringify(e.response).substring(0, 80) + "...")
+            setStatus(JSON.stringify(e.response.substring(0, 80)) + "...")
         }
     }
 
