@@ -130,8 +130,9 @@ app.use('/api',bodyParser.urlencoded({extended : false}),router);
 
 let produce = {
     list: [
-        {id : 1, nameproduce : "Adidas", cost: "2500"},
-        {id : 2, nameproduce : "Mizuno", cost: "1599" }
+        {id : 1, nameproduce : "Toyota", cost: 700},
+        {id : 2, nameproduce : "IZUSU", cost: 500 },
+        {id : 1, nameproduce : "Honda", cost: 500},
 
     ]
 }
@@ -177,7 +178,7 @@ router.route('/produce/:produce_id')
  /*********************************************************************************************************** */
  let admin = {
     list: [
-        {id : 1, nameadmin : "Game", costadmin: "4000"},
+        {id : 0, nameproduce : "Honda", cost: 500},
 
     ]
 }
@@ -186,10 +187,10 @@ router.route('/admin')
     .get((req,res)=>res.json(admin))
     .post((req,res) =>{
         let id = (admin.list.length)?admin.list[admin.list.length-1].id+1:1
-        let nameadmin = req.body.nameadmin
-        let costadmin = req.body.costadmin
+        let nameproduce = req.body.nameproduce
+        let cost = req.body.cost
 
-        admin = {list:[...admin.list,{id,nameadmin,costadmin}]}
+        admin = {list:[...admin.list,{id,nameproduce,cost}]}
         res.json(admin)
     })
 
@@ -202,8 +203,8 @@ router.route('/admin/:admin_id')
         let ID = admin.list.findIndex(item => (item.id === +req.params.admin_id))
 
         if(ID >= 0){
-            admin.list[ID].nameadmin = req.body.nameadmin
-            admin.list[ID].costadmin = req.body.costadmin
+            admin.list[ID].nameproduce = req.body.nameproduce
+            admin.list[ID].cost = req.body.cost
 
             res.json(admin)
         }
