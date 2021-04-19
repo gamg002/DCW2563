@@ -29,56 +29,52 @@ export default function Login({ token }) {
     }
 
     const loginForm = () => (
-        <div className={styles.gridContainer}>
-            <div>
-                Username:
-            </div>
-            <div>
+        <form class="login">
+            <div class="login__field">
+                <i class="login__icon fas fa-user"></i>
                 <input type="text"
                     name="username"
                     placeholder="username"
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
-            <div>
-                Password:
-            </div>
-            <div>
+            <div class="login__field">
+                <i class="login__icon fas fa-lock"></i>
                 <input type="password"
                     name="password"
                     placeholder="password"
                     onChange={(e) => setPassword(e.target.value)} />
             </div>
-        </div>
+        </form>
     )
 
-    const copyText = () => {
-        navigator.clipboard.writeText(token)
-    }
 
     return (
-        <Layout>
-            <Head>
-                <title>Login</title>
-            </Head>
-            <div className={styles.container}>
+            <div className={styles.container1}>
                 <Navbar />
-                <h1>Login</h1>
-                <div><b>Token:</b> {token.substring(0, 15)}...
-                <button onClick={copyText}> Copy token </button>
+                <div className={styles.container2}>
+                    <h1>Login</h1>
+                    <br />
+                    <div>
+                        Status:  {status}
+                    </div>
+                    <br />
+                    {loginForm()}
+                    <div>
+                        <button onClick={login}>Login</button>
+                    </div>
                 </div>
-                <br/>
-                <div>
-                    Status:  {status}
-                </div>
-                <br />
-                {loginForm()}
-                <div>
-                    <button onClick={login}>Login</button>
-                </div>
+
             </div>
-        </Layout>
+
+
+
+
+        /****************************************************************************************************************** */
+
+
     )
+
 }
 
 export function getServerSideProps({ req, res }) {

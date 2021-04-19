@@ -19,9 +19,9 @@ export default function Home({ token }) {
   const printProduces = () => {
     return (Produces.list.map((item, index) =>
     (<li key={index} className={styles.listItem} >
-       {index + 1}<br></br>
-       { item.nameproduce}<br></br>
-       { item.cost} bath<br></br>
+      {index + 1}<br></br>
+      { item.nameproduce}<br></br>
+      { item.cost} bath<br></br>
 
       <button className={`${styles.button} ${styles.btnEdit}`} onClick={() => getProduce(item.id)}>Buy</button>
 
@@ -41,23 +41,22 @@ export default function Home({ token }) {
 
   return (
 
-    <Layout>
-      <Head>
-        <title>First Page</title>
-      </Head>
-      <div className={styles.container}>
-        <Navbar />
-        <div>
-
-          <h2>Produce</h2>
-          <ul className={styles.list} >
-            {printProduces()}
-          </ul>
 
 
-        </div>
+
+    <div className={styles.container1} >
+      <Navbar />
+      <div>
+        <h1>Produce</h1>
+        <br />
+        <ul className={styles.container2}>
+          {printProduces()}
+        </ul>
       </div>
-    </Layout>
+
+    </div>
+
+
   )
 }
 

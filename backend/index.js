@@ -1,3 +1,6 @@
+const bodyParser = require('body-parser');
+const{ Router } = require('express');
+
 
 const express = require('express'),
     app = express(),
@@ -114,6 +117,108 @@ app.use((err, req, res, next) => {
         }
     });
 });
+
+
+//********************************************************************************************************************************************** */
+
+
+app.use(cors())
+app.use('/api',bodyParser.json(),router);
+app.use('/api',bodyParser.urlencoded({extended : false}),router);
+
+
+
+let produce = {
+    list: [
+        {id : 1, nameproduce : "Adidas", cost: "2500"},
+        {id : 2, nameproduce : "Mizuno", cost: "1599" }
+
+    ]
+}
+
+router.route('/produce')
+    .get((req,res)=>res.json(produce))
+    .post((req,res) =>{
+        let id = (produce.list.length)?produce.list[produce.list.length-1].id+1:1
+        let nameproduce = req.body.nameproduce
+        let cost = req.body.cost
+
+        produce = {list:[...produce.list,{id,nameproduce,cost}]}
+        res.json(produce)
+    })
+
+router.route('/produce/:produce_id')
+    .get((req,res)=>{
+        let ID = produce.list.findIndex(item => (item.id === +req.params.produce_id))
+        res.json(produce.list[ID])
+    })
+    .put((req,res)=>{
+        let ID = produce.list.findIndex(item => (item.id === +req.params.produce_id))
+
+        if(ID >= 0){
+            produce.list[ID].nameproduce = req.body.nameproduce
+            produce.list[ID].cost = req.body.cost
+
+            res.json(produce)
+        }
+        else{
+            res.json({status: " Produce Error"})
+        }
+
+    })
+    .delete((req,res)=>{
+        let ID =produce.list.findIndex(item => (item.id === +req.params.produce_id ))
+        produce.list = produce.list.filter(item => item.id !== +req.params.produce_id)
+        res.json(produce)
+    })
+
+
+
+ /*********************************************************************************************************** */
+ let admin = {
+    list: [
+        {id : 1, nameadmin : "Game", costadmin: "4000"},
+
+    ]
+}
+
+router.route('/admin')
+    .get((req,res)=>res.json(admin))
+    .post((req,res) =>{
+        let id = (admin.list.length)?admin.list[admin.list.length-1].id+1:1
+        let nameadmin = req.body.nameadmin
+        let costadmin = req.body.costadmin
+
+        admin = {list:[...admin.list,{id,nameadmin,costadmin}]}
+        res.json(admin)
+    })
+
+router.route('/admin/:admin_id')
+    .get((req,res)=>{
+        let ID = admin.list.findIndex(item => (item.id === +req.params.admin_id))
+        res.json(admin.list[ID])
+    })
+    .put((req,res)=>{
+        let ID = admin.list.findIndex(item => (item.id === +req.params.admin_id))
+
+        if(ID >= 0){
+            admin.list[ID].nameadmin = req.body.nameadmin
+            admin.list[ID].costadmin = req.body.costadmin
+
+            res.json(admin)
+        }
+        else{
+            res.json({status: " Produce Error"})
+        }
+
+    })
+    .delete((req,res)=>{
+        let ID =admin.list.findIndex(item => (item.id === +req.params.admin_id ))
+        admin.list = admin.list.filter(item => item.id !== +req.params.admin_id)
+        res.json(admin)
+    })
+
+
 
 // Start Server
 app.listen(port, () => console.log(`Server is running on port ${port}`))
