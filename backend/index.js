@@ -132,7 +132,7 @@ let produce = {
     list: [
         {id : 1, nameproduce : "Toyota", cost: 700},
         {id : 2, nameproduce : "IZUSU", cost: 500 },
-        {id : 1, nameproduce : "Honda", cost: 500},
+        {id : 3, nameproduce : "Honda", cost: 500},
 
     ]
 }
@@ -178,7 +178,7 @@ router.route('/produce/:produce_id')
  /*********************************************************************************************************** */
  let admin = {
     list: [
-        {id : 0, nameproduce : "Honda", cost: 500},
+        {id : 1, nameproduce : "Honda", cost: 500},
 
     ]
 }

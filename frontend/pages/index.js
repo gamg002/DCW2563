@@ -19,17 +19,20 @@ export default function Home({ token }) {
 
   const printProduces = () => {
     return (Produces.list.map((item, index) =>
-    (<li key={index} className={styles.listItem} >
-      {index + 1}<br></br>
-      { item.nameproduce}<br></br>
-      { item.cost} bath / day<br></br>
+    (<li key={index} className={styles.list} >
+      <div>
 
-      <button className={`${styles.button} ${styles.btnEdit}`} onClick={() => addProduce(item.nameproduce,item.cost) && deleteProduce(item.id)}  >Select</button>
+        {item.nameproduce}<br></br>
+        {item.cost} bath / day
+      </div>
+      <div>
+        <button className={styles.button} onClick={() => addProduce(item.nameproduce, item.cost) && deleteProduce(item.id)}  > <span>Select</span> </button>
+      </div>
 
     </li>)))
   }
 
-  
+
 
   useEffect(() => {
     getProduces()
@@ -44,13 +47,13 @@ export default function Home({ token }) {
   const [admin, setAdmin] = useState({})
 
 
-  const addProduce = async (nameproduce,cost)=> {
-    let stu =await axios.post(URL2,{nameproduce,cost})
+  const addProduce = async (nameproduce, cost) => {
+    let stu = await axios.post(URL2, { nameproduce, cost })
     setAdmin(stu.data)
-    //Mutate(URL1)
+
   }
 
-  const deleteProduce = async (id) =>{
+  const deleteProduce = async (id) => {
     let stu = await axios.delete(`${URL1}/${id}`)
     setProduces(stu.data)
   }
@@ -66,12 +69,12 @@ export default function Home({ token }) {
 
     <div className={styles.container1} >
       <Navbar />
+      <h1>Produce</h1>
+      <br />
       <div>
-        <h1>Produce</h1>
-        <br />
-        <ul className={styles.container2}>
+        <div className={styles.container2}>
           {printProduces()}
-        </ul>
+        </div>
       </div>
 
     </div>

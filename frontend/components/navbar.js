@@ -1,12 +1,11 @@
 import Link from 'next/link'
-
+import styles from '../styles/Home.module.css'
 const Navbar = () => (
     <div>
-        <Link href="/"><a> Home </a></Link> |
-        <Link href="/profile"><a> Profile </a></Link> |
-        <Link href="/register"><a> Register </a></Link>  | 
-        <Link href="/Admin"><a> Admin </a></Link> |
-        <Link href="/logout"><a> Logout </a></Link> 
+        <button className={styles.button2}  ><a href="/"> <span>Home </span></a></button>
+        <button className={styles.button2} ><a href="/profile"><span>Profile</span>  </a></button>
+        <button className={styles.button2} ><a href="/Admin"> <span>Admin </span> </a></button>
+        <button className={styles.button2} ><a href="/logout"> <span>Logout </span> </a></button>
     </div>
 )
 

@@ -52,7 +52,7 @@ export default function Login({ token }) {
     return (
             <div className={styles.container1}>
                 <Navbar />
-                <div className={styles.container2}>
+                <div className={styles.container3}>
                     <h1>Login</h1>
                     <br />
                     <div>
@@ -61,7 +61,8 @@ export default function Login({ token }) {
                     <br />
                     {loginForm()}
                     <div>
-                        <button onClick={login}>Login</button>
+                        <button onClick={login}>Login</button><span/>
+                        <button  ><a href="/register"> Register </a></button>
                     </div>
                 </div>
 
