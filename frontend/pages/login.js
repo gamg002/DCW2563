@@ -62,7 +62,8 @@ export default function Login({ token }) {
                     {loginForm()}
                     <div>
                         <button onClick={login}>Login</button><span/>
-                        <button  ><a href="/register"> Register </a></button>
+                        <button  ><a href="/register"> Register </a></button><br></br>
+                        <button  ><a href="/Admin"> Go Admin page </a></button>
                     </div>
                 </div>
 

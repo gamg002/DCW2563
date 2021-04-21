@@ -25,7 +25,7 @@ export default function Logout({ token }) {
             <Head>
                 <title>User profile</title>
             </Head>
-            <div className={styles.container}>
+            <div className={styles.container1}>
                 <Navbar />
                 <h1>Logout</h1>
                 <div>
