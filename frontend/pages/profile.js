@@ -7,52 +7,63 @@ import axios from 'axios'
 import withAuth from '../components/withAuth'
 import config from '../config/config'
 
-const Profile1 = ({ token }) => {
+const URL3 = 'http://localhost/api/profileuser'
+const URL2 = 'http://localhost/api/admin'
 
-    const [user, setUser] = useState({})
+export default function Home({ token }) {
+
+
+    const [profiles, setProfiles] = useState({
+        list: [
+            { id: 1, nameprofile: "game", call: "0908901837", day: "7", location: "PSU" },
+
+        ]
+    })
 
     useEffect(() => {
-        profileUser()
+        getprofiles()
     }, [])
 
-    const profileUser = async () => {
-        try {
-            // console.log('token: ', token)
-            const users = await axios.get(`${config.URL}/profile`, {
-                headers: { Authorization: `Bearer ${token}` }
-            })
-            // console.log('user: ', users.data)
-            setUser(users.data)
-        }
-        catch (e) {
-            console.log(e)
-        }
+    const getprofiles = async () => {
+        let std = await axios.get(URL3)
+        setProfiles(std.data)
+    }
+    const [nameprofile, setNameprofile] = useState("")
+    const [call, setCall] = useState("")
+    const [day, setDay] = useState("")
+    const [location, setLocation] = useState("")
+
+    const addProfile = async (nameprofile, call, day, location) => {
+        let stu = await axios.post(URL3, { nameprofile, call, day, location })
+        setProfiles(stu.data)
 
     }
- 
+
+
+
+
+
+
+
+
     return (
-        <Layout>
-            <Head>
-                <title>User profile</title>
-            </Head>
-            <div className={styles.container}>
-                <Navbar />
-                <h1>User profile</h1>
-                <div>
-                    <b>Token:</b> {token.substring(0, 15)}... <br /><br />
-                    This route is protected by token, user is required to login first.
-                    <br/>
-                    Otherwise, it will be redirect to Login page
-                    <br/><br/>
-                    {JSON.stringify(user)}
-                </div>
+
+        <div className={styles.container1}>
+            <div>
+                Name - Surname: <br></br><input type="text" onChange={(e) => setNameprofile(e.target.value)}></input><br></br>
+            Call:<br></br> <input type="text" onChange={(e) => setCall(e.target.value)}></input><br></br>
+            Day for rent:<br></br> <input type="text" onChange={(e) => setDay(e.target.value)}></input><br></br>
+            Location:<br></br> <input type="text" onChange={(e) => setLocation(e.target.value)}></input><br></br>
+                <br></br><a href="/framehome" target="iframe_a"><button className={styles.button} onClick={() => addProfile(nameprofile, call, day, location)}><span>Submit</span></button></a>
+
             </div>
-        </Layout>
+        </div>
+
     )
 }
 
-export default withAuth(Profile1)
-
 export function getServerSideProps({ req, res }) {
+    // console.log("token from cookie: ",cookie.get("token")) 
+    // console.log('req: ', req.headers)
     return { props: { token: req.cookies.token || "" } };
 }

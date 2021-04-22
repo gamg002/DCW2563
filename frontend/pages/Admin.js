@@ -9,6 +9,7 @@ import config from '../config/config'
 
 const URL2 = 'http://localhost/api/admin'
 const URL1 = 'http://localhost/api/produce'
+const URL3 = 'http://localhost/api/profileuser'
 
 
 const Profile1 = ({ token }) => {
@@ -16,7 +17,7 @@ const Profile1 = ({ token }) => {
 
     const [Produces, setProduces] = useState({
         list: [
-            { id: 1, nameproduce: "Game", cost: 2500, image: "" }
+            { id: 1, nameproduce: "Game", cost: "2500", image: "" }
         ]
 
     })
@@ -24,6 +25,11 @@ const Profile1 = ({ token }) => {
     const printProduces = () => {
         return (Produces.list.map((item, index) =>
         (<li key={index} className={styles.listItem} >
+
+
+            <div>
+                <img src={item.image} alt="" width="250" height="200" />
+            </div>
             <div>
 
                 {item.nameproduce}<br></br>
@@ -31,9 +37,6 @@ const Profile1 = ({ token }) => {
           </div>
             <div>
                 <button className={styles.button} onClick={() => deleteProduce(item.id)}  > <span>Delete</span> </button>
-            </div>
-            <div>
-                <img src={item.image} alt="" width="250" height="200" />
             </div>
 
         </li>)))
@@ -81,29 +84,33 @@ const Profile1 = ({ token }) => {
     /************************************************************************************************************************************************** */
     const [admin, setAdmin] = useState({
         list: [
-            { id: 1, nameproduce: "Game", cost: 2500, image: "" }
+            { id: 1, nameproduce: "Game", cost: "2500", image: "" }
         ]
 
     })
 
+
+
     const printAdmin = () => {
         return (admin.list.map((item, index) =>
         (<li key={index} className={styles.listItem} >
+
+            <div>{index+1}</div>
+            <div>
+                <img src={item.image} alt="" width="250" height="200" />
+            </div>
             <div>
 
                 {item.nameproduce}<br></br>
                 {item.cost} bath / day
           </div>
             <div>
-                <button className={styles.button} onClick={() => addAdmin(item.nameproduce, item.cost, item.image) && deleteAdmin(item.id)}  > <span>Update</span> </button>
-            </div>
-            <div>
-                <img src={item.image} alt="" width="250" height="200" />
+                <button className={styles.button} onClick={() => addAdmin(item.nameproduce, item.cost, item.image) && deleteAdmin(item.id) && deleteprofileuser(item.id)}  > <span>Add List</span> </button>
+                <button className={styles.button} onClick={() => getprofile(item.id)}>Get Profile</button>
             </div>
 
         </li>)))
     }
-
 
 
     useEffect(() => {
@@ -127,6 +134,52 @@ const Profile1 = ({ token }) => {
         let stu = await axios.delete(`${URL2}/${id}`)
         setAdmin(stu.data)
     }
+    const deleteprofileuser = async (id) => {
+        let stu = await axios.delete(`${URL3}/${id}`)
+        setprofileuser(stu.data)
+      }
+      const [profileuser, setprofileuser] = useState({})
+    /****************************************************************************************************************************************************** */
+    /****************************************************************************************************************************************************** */
+
+
+    const [profiles, setProfiles] = useState({
+        list: [
+            { id: 1, nameprofile: "game", call: "0908901837", day: "7", location: "PSU" }
+        ]
+
+    })
+
+    const [profile, setProfile] = useState({})
+    const getprofile = async (id) => {
+        let profile = await axios.get(`${URL3}/${id}`)
+
+        setProfile({
+            nameprofile: profile.data.nameprofile,
+            call: profile.data.call,
+            day: profile.data.day,
+            location: profile.data.location
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /****************************************************************************************************************************************************** */
     /****************************************************************************************************************************************************** */
@@ -154,7 +207,7 @@ const Profile1 = ({ token }) => {
     return (
         <Layout>
             <Head>
-                <title>Token Check</title>
+                <title>Admin</title>
             </Head>
             <div className={styles.container1}>
                 <Navbar />
@@ -184,9 +237,16 @@ const Profile1 = ({ token }) => {
 
 
                         <div>
-                            <h2>Car for rents</h2>
+                            <h2>Rented Car</h2>
                             <div className={styles.listadmin}>
-                                {printAdmin()}
+
+                                <div>
+                                    {"Name-Surname "+ profile.nameprofile}<br></br>
+                                    {"Call "+profile.call}<br></br>
+                                    {profile.day +"  "+ "day"}<br></br>
+                                    {"Location "+profile.location}<br></br>
+                                    {printAdmin()}
+                                </div>
                             </div>
                         </div>
                     </div>

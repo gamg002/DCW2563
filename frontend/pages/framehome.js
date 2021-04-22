@@ -7,12 +7,13 @@ import axios from 'axios'
 const URL1 = 'http://localhost/api/produce'
 const URL2 = 'http://localhost/api/admin'
 
+
 export default function Home({ token }) {
 
 
   const [Produces, setProduces] = useState({
     list: [
-      { id: 1, nameproduce: "Game", cost: 2500, image: "" }
+      { id: 1, nameproduce: "Game", cost: "2500", image: "" }
     ]
 
   })
@@ -31,7 +32,7 @@ export default function Home({ token }) {
       </div>
       <div>
         <br /><br />
-        <button className={styles.button} onClick={() => addProduce(item.nameproduce, item.cost, item.image) && deleteProduce(item.id)}  > <span>Select</span> </button>
+        <a href="/profile" target="iframe_a"><button className={styles.button} onClick={() => addProduce(item.nameproduce, item.cost, item.image) && deleteProduce(item.id)}  > <span>Select</span> </button></a>
       </div>
 
 

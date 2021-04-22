@@ -26,7 +26,7 @@ export default function Home({ token }) {
       <br />
 
       <div >
-        <iframe src="http://localhost:3000/framehome" height="670" width="1000"></iframe>
+        <iframe src="http://localhost:3000/framehome"  name="iframe_a" height="670" width="1000"></iframe>
       </div>
 
 

@@ -5,7 +5,8 @@
     flex-direction: column;
     text-align: center;
     align-items: top;
-    background-image: linear-gradient(rgb(244, 245, 245), rgb(57, 54, 230));
+    
+    background-color: #f1f1f3;
 }
 
 .container2 {
@@ -156,9 +157,9 @@
   .listadmin{
     display: flex;
     flex-direction: column;
-    border: 3px solid rgb(106, 189, 238);
+    border: 1px solid rgb(118, 119, 119);
     padding: 50px ;
-    margin-left: 250px;
+    margin-left: 50px;
     background-color: #FFFFFF;
     
  }
