@@ -29,17 +29,17 @@ export default function Login({ token }) {
     }
 
     const loginForm = () => (
-        <form class="login">
-            <div class="login__field">
-                <i class="login__icon fas fa-user"></i>
+        <form >
+            <div >
+
                 <input type="text"
                     name="username"
                     placeholder="username"
                     onChange={(e) => setUsername(e.target.value)}
                 />
             </div>
-            <div class="login__field">
-                <i class="login__icon fas fa-lock"></i>
+            <div >
+
                 <input type="password"
                     name="password"
                     placeholder="password"
@@ -50,24 +50,25 @@ export default function Login({ token }) {
 
 
     return (
-            <div className={styles.container1}>
-                <Navbar />
-                <div className={styles.container3}>
-                    <h1>Login</h1>
-                    <br />
-                    <div>
-                        Status:  {status}
-                    </div>
-                    <br />
-                    {loginForm()}
-                    <div>
-                        <button onClick={login}>Login</button><span/>
-                        <button  ><a href="/register"> Register </a></button><br></br>
-                        <button  ><a href="/Admin"> Go Admin page </a></button>
-                    </div>
+        <div className={styles.container1}>
+            <Navbar />
+            <div className={styles.container3}>
+                <h1>Login</h1>
+                <br />
+                <div>
+                    Status:  {status }
                 </div>
-
+                <br />
+                {loginForm()}
+                <div>
+                    <br></br>
+                    <button className={styles.buttonlogin} onClick={login}>Login</button>
+                    <button className={styles.buttonlogin}><a href="/register"> Register </a></button><br></br><br></br>
+                    <button className={styles.buttonre} ><a href="/Admin"> Go Admin page </a></button>
+                </div>
             </div>
+
+        </div>
 
 
 

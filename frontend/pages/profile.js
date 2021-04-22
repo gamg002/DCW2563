@@ -50,10 +50,10 @@ export default function Home({ token }) {
 
         <div className={styles.container1}>
             <div>
-                Name - Surname: <br></br><input type="text" onChange={(e) => setNameprofile(e.target.value)}></input><br></br>
-            Call:<br></br> <input type="text" onChange={(e) => setCall(e.target.value)}></input><br></br>
-            Day for rent:<br></br> <input type="text" onChange={(e) => setDay(e.target.value)}></input><br></br>
-            Location:<br></br> <input type="text" onChange={(e) => setLocation(e.target.value)}></input><br></br>
+            &#128130;Name - Surname: <br></br><input type="text" onChange={(e) => setNameprofile(e.target.value)}></input><br></br>
+            &#128383;Call:<br></br> <input type="text" onChange={(e) => setCall(e.target.value)}></input><br></br>
+            &#128336;Day for rent:<br></br> <input type="text" onChange={(e) => setDay(e.target.value)}></input><br></br>
+            &#128204;Location:<br></br> <input type="text" onChange={(e) => setLocation(e.target.value)}></input><br></br>
                 <br></br><a href="/framehome" target="iframe_a"><button className={styles.button} onClick={() => addProfile(nameprofile, call, day, location)}><span>Submit</span></button></a>
 
             </div>

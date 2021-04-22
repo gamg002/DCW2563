@@ -12,31 +12,38 @@ const URL1 = 'http://localhost/api/produce'
 const URL3 = 'http://localhost/api/profileuser'
 
 
+
 const Profile1 = ({ token }) => {
 
 
     const [Produces, setProduces] = useState({
         list: [
-            { id: 1, nameproduce: "Game", cost: "2500", image: "" }
+            { id: 1, cost: "2500", image: "" }
         ]
 
     })
 
     const printProduces = () => {
         return (Produces.list.map((item, index) =>
-        (<li key={index} className={styles.listItem} >
-
+        (<li key={index} className={styles.listItem1} >
 
             <div>
-                <img src={item.image} alt="" width="250" height="200" />
+                <div>
+                    <img src={item.image} alt="" width="250" height="200" />
+                </div>
+                <div className={styles.wak} >
+
+                    {item.cost} bath / day
+
+                   </div>
+
+
+
             </div>
-            <div>
 
-                {item.nameproduce}<br></br>
-                {item.cost} bath / day
-          </div>
-            <div>
+            <div className={styles.wak}>
                 <button className={styles.button} onClick={() => deleteProduce(item.id)}  > <span>Delete</span> </button>
+                <button className={styles.button} onClick={() => updateproduce(item.id, item.image)}  > <span>Update cost</span> </button>
             </div>
 
         </li>)))
@@ -55,22 +62,21 @@ const Profile1 = ({ token }) => {
 
 
     const [admins, setAdmins] = useState({})
-    const [nameproduce, setNameproduce] = useState("")
+
     const [cost, setCost] = useState("")
     const [image, setImage] = useState("")
 
-    const addSetProduce = async (nameproduce, cost, image) => {
-        let stu = await axios.post(URL1, { nameproduce, cost, image })
+    const addSetProduce = async (cost, image) => {
+        let stu = await axios.post(URL1, { cost, image })
         setProduces(stu.data)
 
     }
 
+    const updateproduce = async (id) => {
+        let stu = await axios.put(`${URL1}/${id}`, { cost, image })
+        setProduces(stu.data)
+    }
 
-    /*const addProduce = async (nameproduce, cost) => {
-        let stu = await axios.post(URL2, { nameproduce, cost })
-        setAdmins(stu.data)
-
-    }*/
 
     const deleteProduce = async (id) => {
         let stu = await axios.delete(`${URL1}/${id}`)
@@ -84,7 +90,7 @@ const Profile1 = ({ token }) => {
     /************************************************************************************************************************************************** */
     const [admin, setAdmin] = useState({
         list: [
-            { id: 1, nameproduce: "Game", cost: "2500", image: "" }
+            { id: 1, cost: "2500", image: "" }
         ]
 
     })
@@ -93,20 +99,25 @@ const Profile1 = ({ token }) => {
 
     const printAdmin = () => {
         return (admin.list.map((item, index) =>
-        (<li key={index} className={styles.listItem} >
+        (<li key={index} className={styles.listItem1} >
 
-            <div>{index+1}</div>
+            <div className={styles.wak}>{index + 1}</div>
             <div>
-                <img src={item.image} alt="" width="250" height="200" />
+                <div>
+                    <img src={item.image} alt="" width="250" height="200" />
+                </div>
+                <div className={styles.wak} >
+
+                    {item.cost} bath / day
+
+                   </div>
+
+
+
             </div>
             <div>
-
-                {item.nameproduce}<br></br>
-                {item.cost} bath / day
-          </div>
-            <div>
                 <button className={styles.button} onClick={() => addAdmin(item.nameproduce, item.cost, item.image) && deleteAdmin(item.id) && deleteprofileuser(item.id)}  > <span>Add List</span> </button>
-                <button className={styles.button} onClick={() => getprofile(item.id)}>Get Profile</button>
+                <button className={styles.button} onClick={() => getprofile(item.id)}><span>Get Profile</span></button>
             </div>
 
         </li>)))
@@ -125,7 +136,7 @@ const Profile1 = ({ token }) => {
 
 
     const addAdmin = async (nameproduce, cost, image) => {
-        let stu = await axios.post(URL1, { nameproduce, cost, image })
+        let stu = await axios.post(URL1, { cost, image })
         setProducecar(stu.data)
 
     }
@@ -137,8 +148,8 @@ const Profile1 = ({ token }) => {
     const deleteprofileuser = async (id) => {
         let stu = await axios.delete(`${URL3}/${id}`)
         setprofileuser(stu.data)
-      }
-      const [profileuser, setprofileuser] = useState({})
+    }
+    const [profileuser, setprofileuser] = useState({})
     /****************************************************************************************************************************************************** */
     /****************************************************************************************************************************************************** */
 
@@ -205,55 +216,55 @@ const Profile1 = ({ token }) => {
     }
 
     return (
-        <Layout>
-            <Head>
-                <title>Admin</title>
-            </Head>
-            <div className={styles.container1}>
-                <Navbar />
-                <div>
-                    <h2>
-                        Add Car
+
+        <div className={styles.container1}>
+            <Navbar />
+            <div>
+                <h2>
+                    Add Car
                     </h2>
-                      name: <input type="text" onChange={(e) => setNameproduce(e.target.value)}></input>
-                      cost: <input type="text" onChange={(e) => setCost(e.target.value)}></input>
-                      Picture:<select name="image" onChange={(e) => setImage(e.target.value)}>
-                        <option value="/honda.PNG" selected>--Select--</option>
-                        <option value="/toyota.PNG">Toyota</option>
-                        <option value="/honda.PNG" >Honda</option>
-                        <option value="/isuzu.PNG">ISUZU</option>
-                        <option value="/ford.PNG">Ford</option>
-                    </select>
+                   <div>
+                       Car:<select name="image" onChange={(e) => setImage(e.target.value)}>
+                    <option value="/honda.PNG" selected>--Select--</option>
+                    <option value="/toyota.PNG">Toyota</option>
+                    <option value="/honda.PNG" >Honda</option>
+                    <option value="/isuzu.PNG">ISUZU</option>
+                    <option value="/ford.PNG">Ford</option>
+                </select>
+                </div>
+                <div>cost: <input type="text" onChange={(e) => setCost(e.target.value)}></input></div>
+                <div> <button className={styles.buttonre} onClick={() => addSetProduce( cost, image)}><span>Add</span></button></div>
 
-                    <button className={styles.button} onClick={() => addSetProduce(nameproduce, cost, image)}><span>Add</span></button>
-                    <div className={styles.adminrow}>
-                        <div>
-                            <h2>Car List</h2>
-                            <div className={styles.listadmin}>
-                                {printProduces()}
-                            </div>
-                        </div>
-
-
-
-                        <div>
-                            <h2>Rented Car</h2>
-                            <div className={styles.listadmin}>
-
-                                <div>
-                                    {"Name-Surname "+ profile.nameprofile}<br></br>
-                                    {"Call "+profile.call}<br></br>
-                                    {profile.day +"  "+ "day"}<br></br>
-                                    {"Location "+profile.location}<br></br>
-                                    {printAdmin()}
-                                </div>
-                            </div>
+               
+                <div className={styles.adminrow}>
+                    <div>
+                        <h2>Car List</h2>
+                        <div className={styles.listadmin}>
+                            {printProduces()}
                         </div>
                     </div>
 
+
+
+                    <div>
+                        <h2>Rented Car</h2>
+                        <div className={styles.listadmin}>
+
+                            <div >
+                                <div className={styles.selectitem}>&#128130;: {profile.nameprofile}<br></br></div>
+                                <div className={styles.selectitem}>&#128383;: {profile.call}<br></br></div>
+                                <div className={styles.selectitem}>&#128336;: {profile.day + " - " + "day"}<br></br></div>
+                                <div className={styles.selectitem}>&#128204;: {profile.location}<br></br></div>
+
+                                {printAdmin()}
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-        </Layout>
+        </div>
+
     )
 }
 

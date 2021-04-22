@@ -5,8 +5,9 @@
     flex-direction: column;
     text-align: center;
     align-items: top;
-    
-    background-color: #f1f1f3;
+    color: #FFFFFF;
+    font-size: 20px;
+    background-color: #020202;
 }
 
 .container2 {
@@ -24,23 +25,15 @@
 .container3 {
   display: flex;
   flex-direction: column;
-   width: auto;
-   height: auto;
-   /*border: 1px solid rgba(246, 246, 247, 0.658);*/
+   color: #f7f3f3;
+    font-size: 20px;
+    width: 30%;
+   border: 2px solid rgba(240, 240, 243, 0.658);
    padding: 50px;
-   margin: 0px 200px 0px 200px;
-   background-color: #FFFFFF;
+   margin: 100px 200px 0px 670px;
+   background-color: #1f1f1e;
 }
 /************************************************************List home*****************************************************/
-.list{
-   display: flex;
-   flex-direction: row;
-   border: 3px solid rgb(106, 189, 238);
-   padding: 60px;
-   margin: 0px 30px 0px 35px;
-   background-color: #FFFFFF;
-
-}
 .listItem {
   display: flex;
   flex-direction: row;
@@ -48,21 +41,25 @@
   text-align: center;
   margin: 32px;
   padding: 32px;
-  border: 2px solid green;
+ 
   font-size: 1.4rem;
-  background-color: #FFFFFF;
+  background-color: #D4D4D4;
+}
+.listItem1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+  margin: 32px;
+  color: #0a0a0a;
+  font-size: 20px;
+  padding: 32px;
+  border: 5px solid rgb(247, 243, 6);
+  font-size: 1.4rem;
+  background-color: #D4D4D4;
 }
 
-.listH {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  margin: 10px;
-  padding: 20px;
-  flex-wrap: wrap;
-  width: 80vw;
-  /* border: 2px solid red; */
-}
+
 
 /************************************************************Button*****************************************************/
 .button {
@@ -106,9 +103,9 @@
 /************************************************************Nevbar*****************************************************/
   .button2 {
     border-radius: 4px;
-    background-color: #1e7bf4;
+    background-color: #e9da0d;
     border: none;
-    color: #FFFFFF;
+    color: #131111;
     text-align: center;
     font-size: 28px;
     padding: 20px;
@@ -148,18 +145,69 @@
     flex-direction: row;
     margin: 15px 15px 0px 15px;
   }
-  .admincul{
-    display: flex;
-    flex-direction: column;
-    margin: 0px 15px 0px 15px;
-    border: 2px solid rgb(106, 189, 238);
-  }
+  
   .listadmin{
     display: flex;
     flex-direction: column;
-    border: 1px solid rgb(118, 119, 119);
+    border: 1px solid rgb(226, 212, 9);
     padding: 50px ;
     margin-left: 50px;
-    background-color: #FFFFFF;
+    background-color: #020202;
     
  }
+ /*******************************************************************************login************************************** **********************/
+ .buttonlogin {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: rgb(15, 15, 15);
+  background-color: #e9ca1d;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.buttonlogin:hover {background-color: #f2f4f7}
+
+.buttonlogin:active {
+  background-color: #33a737;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.buttonre {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px rgb(53, 53, 53);
+}
+
+.buttonre:hover {background-color: #3e8e41}
+
+.buttonre:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+.wak{
+  margin: 0px 15px 0px 15px;
+  font-size: 24px;
+  
+}
+.selectitem{
+  background-color: #e9ca1d;
+  color: #070707;
+  border: 1px solid rgb(3, 3, 3);
+}

@@ -87,12 +87,17 @@ export default function Register({ token }) {
                 <br />
             Status:  {status}
                 <br /><br />
-                <div className={styles.content}>
+                <div >
                     {registerForm()}
                 </div>
 
-                <div>
-                    <button onClick={register}>Register</button>
+                <div  >
+                    <br/>
+                    <button className={styles.buttonlogin} onClick={register}>Register</button>
+                </div>
+                <div  >
+                    <br/>
+                    <button className={styles.buttonre}><a href="/Admin">Go Login</a></button>
                 </div>
             </div>
         </div>
