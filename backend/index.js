@@ -1,5 +1,5 @@
 const bodyParser = require('body-parser');
-const{ Router } = require('express');
+const { Router } = require('express');
 
 
 const express = require('express'),
@@ -57,7 +57,7 @@ router.get('/foo',
 
     });
 
-router.get('/logout', (req, res) => { 
+router.get('/logout', (req, res) => {
     res.setHeader(
         "Set-Cookie",
         cookie.serialize("token", '', {
@@ -75,19 +75,19 @@ router.get('/logout', (req, res) => {
 
 
 /* GET user profile. */
-router.get('/profile',
+/*router.get('/profile',
     passport.authenticate('jwt', { session: false }),
     (req, res, next) => {
         res.send(req.user)
-    });
+    });*/
 
 router.post('/register',
     async (req, res) => {
         try {
             const SALT_ROUND = 10
-            const { username, email, password } = req.body 
+            const { username, email, password } = req.body
             if (!username || !email || !password)
-                return res.json( {message: "Cannot register with empty string"})
+                return res.json({ message: "Cannot register with empty string" })
             if (db.checkExistingUser(username) !== db.NOT_FOUND)
                 return res.json({ message: "Duplicated user" })
 
@@ -100,7 +100,7 @@ router.post('/register',
         }
     })
 
-router.get('/alluser', (req,res) => res.json(db.users.users))
+router.get('/alluser', (req, res) => res.json(db.users.users))
 
 router.get('/', (req, res, next) => {
     res.send('Respond without authentication');
@@ -123,102 +123,152 @@ app.use((err, req, res, next) => {
 
 
 app.use(cors())
-app.use('/api',bodyParser.json(),router);
-app.use('/api',bodyParser.urlencoded({extended : false}),router);
+app.use('/api', bodyParser.json(), router);
+app.use('/api', bodyParser.urlencoded({ extended: false }), router);
 
 
 
 let produce = {
     list: [
-        {id : 1, nameproduce : "Toyota", cost: 700},
-        {id : 2, nameproduce : "IZUSU", cost: 500 },
-        {id : 3, nameproduce : "Honda", cost: 500},
+        { id: 1,  cost: "500", image: "/toyota.PNG" },
+        { id: 2,  cost: "1,200", image: "/isuzu.PNG" },
+        { id: 3,  cost: "500", image: "/honda.PNG" },
+        { id: 4,  cost: "30,000", image: "/ford.PNG" },
 
     ]
 }
 
 router.route('/produce')
-    .get((req,res)=>res.json(produce))
-    .post((req,res) =>{
-        let id = (produce.list.length)?produce.list[produce.list.length-1].id+1:1
-        let nameproduce = req.body.nameproduce
+    .get((req, res) => res.json(produce))
+    .post((req, res) => {
+        let id = (produce.list.length) ? produce.list[produce.list.length - 1].id + 1 : 1
+        
         let cost = req.body.cost
+        let image = req.body.image
 
-        produce = {list:[...produce.list,{id,nameproduce,cost}]}
+        produce = { list: [...produce.list, { id, cost, image }] }
         res.json(produce)
     })
 
 router.route('/produce/:produce_id')
-    .get((req,res)=>{
+    .get((req, res) => {
         let ID = produce.list.findIndex(item => (item.id === +req.params.produce_id))
         res.json(produce.list[ID])
     })
-    .put((req,res)=>{
+    .put((req, res) => {
         let ID = produce.list.findIndex(item => (item.id === +req.params.produce_id))
 
-        if(ID >= 0){
-            produce.list[ID].nameproduce = req.body.nameproduce
+        if (ID >= 0) {
+            
             produce.list[ID].cost = req.body.cost
 
             res.json(produce)
         }
-        else{
-            res.json({status: " Produce Error"})
+        else {
+            res.json({ status: " Produce Error" })
         }
 
     })
-    .delete((req,res)=>{
-        let ID =produce.list.findIndex(item => (item.id === +req.params.produce_id ))
+    .delete((req, res) => {
+        let ID = produce.list.findIndex(item => (item.id === +req.params.produce_id))
         produce.list = produce.list.filter(item => item.id !== +req.params.produce_id)
         res.json(produce)
     })
 
 
 
- /*********************************************************************************************************** */
- let admin = {
+/*********************************************************************************************************** */
+let admin = {
     list: [
-        {id : 1, nameproduce : "Honda", cost: 500},
+        { id: 1,  cost: "500", image: "/honda.PNG" },
 
     ]
 }
 
-router.route('/admin')
-    .get((req,res)=>res.json(admin))
-    .post((req,res) =>{
-        let id = (admin.list.length)?admin.list[admin.list.length-1].id+1:1
-        let nameproduce = req.body.nameproduce
-        let cost = req.body.cost
 
-        admin = {list:[...admin.list,{id,nameproduce,cost}]}
+router.route('/admin')
+    .get((req, res) => res.json(admin))
+    .post((req, res) => {
+        let id = (admin.list.length) ? admin.list[admin.list.length - 1].id + 1 : 1
+        
+        let cost = req.body.cost
+        let image = req.body.image
+
+        admin = { list: [...admin.list, { id,  cost, image }] }
         res.json(admin)
     })
 
 router.route('/admin/:admin_id')
-    .get((req,res)=>{
+    .get((req, res) => {
         let ID = admin.list.findIndex(item => (item.id === +req.params.admin_id))
         res.json(admin.list[ID])
     })
-    .put((req,res)=>{
+    .put((req, res) => {
         let ID = admin.list.findIndex(item => (item.id === +req.params.admin_id))
 
-        if(ID >= 0){
-            admin.list[ID].nameproduce = req.body.nameproduce
+        if (ID >= 0) {
+            
             admin.list[ID].cost = req.body.cost
 
             res.json(admin)
         }
-        else{
-            res.json({status: " Produce Error"})
+        else {
+            res.json({ status: " Produce Error" })
         }
 
     })
-    .delete((req,res)=>{
-        let ID =admin.list.findIndex(item => (item.id === +req.params.admin_id ))
+    .delete((req, res) => {
+        let ID = admin.list.findIndex(item => (item.id === +req.params.admin_id))
         admin.list = admin.list.filter(item => item.id !== +req.params.admin_id)
         res.json(admin)
     })
 
+/********************************************************************************************************************************************************* */
+let profileuser = {
+    list: [
+        { id: 1, nameprofile: "game", call: "0908901837", day: "7", location: "PSU" },
+
+    ]
+}
+
+
+router.route('/profileuser')
+    .get((req, res) => res.json(profileuser))
+    .post((req, res) => {
+        let id = (profileuser.list.length) ? profileuser.list[profileuser.list.length - 1].id + 1 : 1
+        let nameprofile = req.body.nameprofile
+        let call = req.body.call
+        let day = req.body.day
+        let location = req.body.location
+
+        profileuser = { list: [...profileuser.list, { id,nameprofile, call, day, location }] }
+        res.json(profileuser)
+    })
+
+router.route('/profileuser/:profileuser_id')
+    .get((req, res) => {
+        let ID = profileuser.list.findIndex(item => (item.id === +req.params.profileuser_id))
+        res.json(profileuser.list[ID])
+    })
+    .put((req, res) => {
+        let ID = profileuser.list.findIndex(item => (item.id === +req.params.profileuser_id))
+
+        if (ID >= 0) {
+            
+            profileuser.list[ID].call = req.body.call
+
+            res.json(profileuser)
+        }
+        else {
+            res.json({ status: " Produce Error" })
+        }
+
+    })
+    .delete((req, res) => {
+        let ID = profileuser.list.findIndex(item => (item.id === +req.params.profileuser_id))
+        profileuser.list = profileuser.list.filter(item => item.id !== +req.params.profileuser_id)
+        res.json(profileuser)
+    })
 
 
 // Start Server
