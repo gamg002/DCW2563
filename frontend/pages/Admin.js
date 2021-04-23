@@ -219,36 +219,40 @@ const Profile1 = ({ token }) => {
 
         <div className={styles.container1}>
             <Navbar />
-            <div>
+            <div className={styles.container1}>
                 <h2>
                     Add Car
                     </h2>
-                   <div>
-                       Car:<select name="image" onChange={(e) => setImage(e.target.value)}>
-                    <option value="/honda.PNG" selected>--Select--</option>
-                    <option value="/toyota.PNG">Toyota</option>
-                    <option value="/honda.PNG" >Honda</option>
-                    <option value="/isuzu.PNG">ISUZU</option>
-                    <option value="/ford.PNG">Ford</option>
-                </select>
+                <div>
+                    Car:<select name="image" onChange={(e) => setImage(e.target.value)}>
+                        <option value="/honda.PNG" selected>--Select--</option>
+                        <option value="/toyota.PNG">Toyota</option>
+                        <option value="/honda.PNG" >Honda</option>
+                        <option value="/isuzu.PNG">ISUZU</option>
+                        <option value="/ford.PNG">Ford</option>
+                    </select>
                 </div>
                 <div>cost: <input type="text" onChange={(e) => setCost(e.target.value)}></input></div>
-                <div> <button className={styles.buttonre} onClick={() => addSetProduce( cost, image)}><span>Add</span></button></div>
+                <div> <button className={styles.buttonre} onClick={() => addSetProduce(cost, image)}><span>Add</span></button></div>
 
-               
+
                 <div className={styles.adminrow}>
+
                     <div>
                         <h2>Car List</h2>
-                        <div className={styles.listadmin}>
-                            {printProduces()}
+                        <div className={styles.container1}>
+                            <div>
+                                {printProduces()}
+                            </div>
                         </div>
                     </div>
 
 
 
+
                     <div>
                         <h2>Rented Car</h2>
-                        <div className={styles.listadmin}>
+                        <div className={styles.container1}>
 
                             <div >
                                 <div className={styles.selectitem}>&#128130;: {profile.nameprofile}<br></br></div>

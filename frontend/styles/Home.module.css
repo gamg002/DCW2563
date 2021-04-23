@@ -8,6 +8,7 @@
     color: #FFFFFF;
     font-size: 20px;
     background-color: #020202;
+    width: 100%;
 }
 
 .container2 {
@@ -30,7 +31,7 @@
     width: 30%;
    border: 2px solid rgba(240, 240, 243, 0.658);
    padding: 50px;
-   margin: 100px 200px 0px 670px;
+   margin: 100px 0px 0px 35%;
    background-color: #1f1f1e;
 }
 /************************************************************List home*****************************************************/
@@ -50,13 +51,14 @@
   flex-direction: row;
   justify-content: center;
   text-align: center;
-  margin: 32px;
+  margin: 10px;
   color: #0a0a0a;
   font-size: 20px;
-  padding: 32px;
+  padding: 10px;
   border: 5px solid rgb(247, 243, 6);
   font-size: 1.4rem;
   background-color: #D4D4D4;
+  width: 95%;
 }
 
 
@@ -144,14 +146,15 @@
     display: flex;
     flex-direction: row;
     margin: 15px 15px 0px 15px;
+    justify-content: center;
   }
   
   .listadmin{
     display: flex;
     flex-direction: column;
     border: 1px solid rgb(226, 212, 9);
-    padding: 50px ;
-    margin-left: 50px;
+    width: 50%;
+    
     background-color: #020202;
     
  }
