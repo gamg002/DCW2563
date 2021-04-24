@@ -2,7 +2,6 @@ const bcrypt = require('bcrypt')
 
 let users = {
     users: [
-        { id: 1, username: '6135512063', password: '$2b$10$0AsMSQaUB0AlLnKzgeUOfOE.hWUodtuR4NOU954XLVy2gy3lBWsdO', email: 'gamg002@gmail.com' },
     ]
 }
 

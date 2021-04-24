@@ -75,11 +75,7 @@ router.get('/logout', (req, res) => {
 
 
 /* GET user profile. */
-/*router.get('/profile',
-    passport.authenticate('jwt', { session: false }),
-    (req, res, next) => {
-        res.send(req.user)
-    });*/
+
 
 router.post('/register',
     async (req, res) => {
@@ -130,10 +126,10 @@ app.use('/api', bodyParser.urlencoded({ extended: false }), router);
 
 let produce = {
     list: [
-        { id: 1,  cost: "500", image: "/toyota.PNG" },
-        { id: 2,  cost: "1,200", image: "/isuzu.PNG" },
-        { id: 3,  cost: "500", image: "/honda.PNG" },
-        { id: 4,  cost: "30,000", image: "/ford.PNG" },
+        { id: 1, cost: "500", image: "/toyota.PNG" },
+        { id: 2, cost: "1,200", image: "/isuzu.PNG" },
+        { id: 3, cost: "500", image: "/honda.PNG" },
+        { id: 4, cost: "30,000", image: "/ford.PNG" },
 
     ]
 }
@@ -142,7 +138,7 @@ router.route('/produce')
     .get((req, res) => res.json(produce))
     .post((req, res) => {
         let id = (produce.list.length) ? produce.list[produce.list.length - 1].id + 1 : 1
-        
+
         let cost = req.body.cost
         let image = req.body.image
 
@@ -159,7 +155,7 @@ router.route('/produce/:produce_id')
         let ID = produce.list.findIndex(item => (item.id === +req.params.produce_id))
 
         if (ID >= 0) {
-            
+
             produce.list[ID].cost = req.body.cost
 
             res.json(produce)
@@ -180,7 +176,7 @@ router.route('/produce/:produce_id')
 /*********************************************************************************************************** */
 let admin = {
     list: [
-        { id: 1,  cost: "500", image: "/honda.PNG" },
+        { id: 1, cost: "500", image: "/honda.PNG" },
 
     ]
 }
@@ -190,11 +186,11 @@ router.route('/admin')
     .get((req, res) => res.json(admin))
     .post((req, res) => {
         let id = (admin.list.length) ? admin.list[admin.list.length - 1].id + 1 : 1
-        
+
         let cost = req.body.cost
         let image = req.body.image
 
-        admin = { list: [...admin.list, { id,  cost, image }] }
+        admin = { list: [...admin.list, { id, cost, image }] }
         res.json(admin)
     })
 
@@ -207,7 +203,7 @@ router.route('/admin/:admin_id')
         let ID = admin.list.findIndex(item => (item.id === +req.params.admin_id))
 
         if (ID >= 0) {
-            
+
             admin.list[ID].cost = req.body.cost
 
             res.json(admin)
@@ -241,7 +237,7 @@ router.route('/profileuser')
         let day = req.body.day
         let location = req.body.location
 
-        profileuser = { list: [...profileuser.list, { id,nameprofile, call, day, location }] }
+        profileuser = { list: [...profileuser.list, { id, nameprofile, call, day, location }] }
         res.json(profileuser)
     })
 
@@ -254,7 +250,7 @@ router.route('/profileuser/:profileuser_id')
         let ID = profileuser.list.findIndex(item => (item.id === +req.params.profileuser_id))
 
         if (ID >= 0) {
-            
+
             profileuser.list[ID].call = req.body.call
 
             res.json(profileuser)

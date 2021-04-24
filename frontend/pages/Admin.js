@@ -43,7 +43,7 @@ const Profile1 = ({ token }) => {
 
             <div className={styles.wak}>
                 <button className={styles.button} onClick={() => deleteProduce(item.id)}  > <span>Delete</span> </button>
-                <button className={styles.button} onClick={() => updateproduce(item.id, item.image)}  > <span>Update cost</span> </button>
+                <button className={styles.button} onClick={() => updateproduce(item.id)}  > <span>Update cost</span> </button>
             </div>
 
         </li>)))
@@ -73,7 +73,7 @@ const Profile1 = ({ token }) => {
     }
 
     const updateproduce = async (id) => {
-        let stu = await axios.put(`${URL1}/${id}`, { cost, image })
+        let stu = await axios.put(`${URL1}/${id}`, { cost })
         setProduces(stu.data)
     }
 
